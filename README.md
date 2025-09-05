@@ -131,6 +131,7 @@ On **master only**:
 ```bash
 sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 ```
+📌 Note: The --pod-network-cidr=192.168.0.0/16 flag defines the pod IP range. This value should match the CNI plugin you plan to use (e.g., 10.244.0.0/16 for Flannel). In this project, 192.168.0.0/16 was used with Calico.
 
 Configure kubectl:
 
@@ -202,7 +203,7 @@ kubectl get svc nginx
 
 ## Step 7: Test Networking
 
-### ✅ 1. kube-proxy (service → pods mapping)
+###  1. kube-proxy (service → pods mapping)
 
 ```bash
 kubectl get endpoints nginx
