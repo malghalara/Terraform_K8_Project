@@ -1,0 +1,5 @@
+# Example terraform.tfvars file
+# Copy this to terraform.tfvars and fill in with your own values
+
+do_token   = "your_digitalocean_api_token_here"
+ssh_key_id = "your_ssh_key_id_here"
