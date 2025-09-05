@@ -1,10 +1,10 @@
-# 🚀 Kubernetes Core Concepts Visualization & Networking Demo
+# Kubernetes Core Concepts Visualization & Networking Demo
 
 This project provisions a **Kubernetes cluster on DigitalOcean using Terraform** and demonstrates **core Kubernetes concepts** by deploying an nginx application and testing networking (kube-proxy, DNS inside pods, NodePort access).
 
 ---
 
-## 📌 Objectives
+## Objectives
 
 * Provision infrastructure (1 master, 2 worker nodes) with Terraform.
 * Install and configure Kubernetes from scratch using **kubeadm**.
@@ -18,7 +18,7 @@ This project provisions a **Kubernetes cluster on DigitalOcean using Terraform**
 
 ---
 
-## 🛠️ Prerequisites
+## 🛠Prerequisites
 
 * DigitalOcean account + API Token.
 * SSH key added to DigitalOcean.
@@ -29,7 +29,7 @@ This project provisions a **Kubernetes cluster on DigitalOcean using Terraform**
 ---
 
 
-## ⚡ Step 1: Provision Infrastructure with Terraform
+## Step 1: Provision Infrastructure with Terraform
 
 ### 1. Configure variables
 
@@ -67,7 +67,7 @@ Terraform outputs their IPs.
 
 ---
 
-## ⚡ Step 2: Prepare All Nodes
+## Step 2: Prepare All Nodes
 
 SSH into **each node (master + workers)**:
 
@@ -124,7 +124,7 @@ echo 1 | sudo tee /proc/sys/net/ipv4/ip_forward
 
 ---
 
-## ⚡ Step 3: Initialize Master Node
+## Step 3: Initialize Master Node
 
 On **master only**:
 
@@ -142,7 +142,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 ---
 
-## ⚡ Step 4: Install Calico CNI
+## Step 4: Install Calico CNI
 
 On **master**:
 
@@ -158,7 +158,7 @@ kubectl get pods -n kube-system
 
 ---
 
-## ⚡ Step 5: Join Worker Nodes
+## Step 5: Join Worker Nodes
 
 On **each worker**, run the `kubeadm join ...` command given by master.
 Example:
@@ -175,7 +175,7 @@ kubectl get nodes
 
 ---
 
-## ⚡ Step 6: Deploy nginx
+## Step 6: Deploy nginx
 
 Apply manifest:
 
@@ -200,7 +200,7 @@ kubectl get svc nginx
 
 ---
 
-## ⚡ Step 7: Test Networking
+## Step 7: Test Networking
 
 ### ✅ 1. kube-proxy (service → pods mapping)
 
@@ -214,7 +214,7 @@ Expected:
 nginx   10.244.0.10:80,10.244.1.15:80
 ```
 
-### ✅ 2. CoreDNS (DNS inside pod)
+### 2. CoreDNS (DNS inside pod)
 
 Run a test pod:
 
@@ -232,7 +232,7 @@ wget -qO- http://nginx
 
 Expected: nginx welcome page.
 
-### ✅ 3. Browser Access (NodePort)
+### 3. Browser Access (NodePort)
 
 From master, check NodePort:
 
@@ -253,7 +253,7 @@ http://<worker-node-ip>:<port-id>
 ```
 
 
-## ✅ Final Outcome
+## Final Outcome
 
 * A **3-node Kubernetes cluster** (1 master, 2 workers) was provisioned with Terraform.
 * nginx was deployed and exposed.
