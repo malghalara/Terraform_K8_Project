@@ -18,7 +18,7 @@ This project provisions a **Kubernetes cluster on DigitalOcean using Terraform**
 
 ---
 
-## 🛠Prerequisites
+## Prerequisites
 
 * DigitalOcean account + API Token.
 * SSH key added to DigitalOcean.
